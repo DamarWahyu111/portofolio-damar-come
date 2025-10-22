@@ -1,14 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import useTypewriter from "./hooks/useTypewriter"; 
+
 export default function App() {
-  // ===== Theme (matches your localStorage + body.dark behavior) =====
   useEffect(() => {
     const saved = localStorage.getItem('theme') || 'light'
     if (saved === 'dark') document.body.classList.add('dark')
-    // small fade-in on mount like your "loaded" class
     requestAnimationFrame(() => document.body.classList.add('loaded'))
   }, [])
 
-  // ===== Active section highlighting =====
   const [current, setCurrent] = useState('about')
   useEffect(() => {
     const onScroll = () => {
@@ -25,7 +24,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // ===== Fade-in intersection observer =====
   useEffect(() => {
     const opts = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     const io = new IntersectionObserver((entries) => {
@@ -36,7 +34,6 @@ export default function App() {
     return () => io.disconnect()
   }, [])
 
-  // ===== Parallax for hero =====
   const heroRef = useRef(null)
   useEffect(() => {
     const onScroll = () => {
@@ -168,21 +165,30 @@ function Header({ current }) {
 }
 
 function Hero({ openLB }) {
+  // non-breaking space supaya tidak pernah terpecah
+  const typedName = useTypewriter("Damar\u00A0Wahyu\u00A0P", { speed: 85, startDelay: 300 });
+
   return (
     <div className="hero-content fade-in">
-      <div className="hero-text">
-        <h1>
-          Hi, I'm{' '}
-          <span style={{ background: 'var(--gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            Damar Wahyu P
+      <div className="hero-text slide-enter">
+        <h1 className="hero-title">
+          <span>Hi, I'm&nbsp;</span>
+          <span className="no-wrap">
+            <span className="gradient-text">{typedName}</span>
+            <span className="type-cursor">|</span>
           </span>
         </h1>
+
         <p className="subtitle">Frontend Developer &amp; Backend Developer</p>
         <p>
-          Sebagai mahasiswa yang tertarik pada front-end dan back-end, saya senang mengubah ide menjadi produk nyata. Saya berfokus pada performa dan aksesibilitas, dipadukan dengan desain yang rapi agar setiap interaksi terasa intuitif.
-          Saya memiliki pengalaman dengan HTML, CSS, dan JavaScript, serta dasar yang kuat pada jQuery, Node.js/Express, dan MySQL. Pernah terlibat dalam proyek UI/UX dasar dan berkesempatan menjadi MC di acara tingkat nasional—pengalaman yang meningkatkan kepercayaan diri dan komunikasi publik.
-          Terbuka untuk kesempatan magang, kolaborasi, atau diskusi seputar teknologi web.
+          Sebagai mahasiswa yang tertarik pada front-end dan back-end, saya senang mengubah ide menjadi produk nyata.
+          Saya berfokus pada performa dan aksesibilitas, dipadukan dengan desain yang rapi agar setiap interaksi terasa
+          intuitif. Saya memiliki pengalaman dengan HTML, CSS, dan JavaScript, serta dasar yang kuat pada jQuery,
+          Node.js/Express, dan MySQL. Pernah terlibat dalam proyek UI/UX dasar dan berkesempatan menjadi MC di acara
+          tingkat nasional—pengalaman yang meningkatkan kepercayaan diri dan komunikasi publik. Terbuka untuk kesempatan
+          magang, kolaborasi, atau diskusi seputar teknologi web.
         </p>
+
         <div className="cta-buttons">
           <a href="#projects" className="btn btn-primary">
             <i className="fas fa-rocket"></i>
@@ -194,13 +200,17 @@ function Hero({ openLB }) {
           </a>
         </div>
       </div>
+
       <div className="hero-image floating">
-        <img src="/img/WhatsApp Image 2025-06-10 at 14.45.46_c012ae3e.jpg" alt="Damar Wahyu Putra" onClick={(e) => openLB(e.target.src)} />
+        <img
+          src="/img/WhatsApp Image 2025-06-10 at 14.45.46_c012ae3e.jpg"
+          alt="Damar Wahyu Putra"
+          onClick={(e) => openLB(e.target.src)}
+        />
       </div>
     </div>
-  )
+  );
 }
-
 function Experience() {
   return (
     <div className="experience-grid">

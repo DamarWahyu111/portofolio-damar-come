@@ -241,13 +241,17 @@ body.dark .hero {
   filter: blur(3px);
 }
 
-.hero-content {
+.hero-content{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: minmax(0,1fr) minmax(320px, 40vw);
+  gap: clamp(20px, 4vw, 64px);
   align-items: center;
   position: relative;
   z-index: 1;
+}
+
+.hero-title{
+  white-space: nowrap;             
 }
 
 .hero-text h1 {
@@ -255,6 +259,44 @@ body.dark .hero {
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.2;
+}
+
+.no-wrap{
+  white-space: nowrap;                
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.type-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: cursorBlink 0.8s steps(1, end) infinite;
+}
+@keyframes cursorBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero-text.slide-enter {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+body.loaded .hero-text.slide-enter {
+  animation: slideInLeft 0.7s ease-out 0.15s forwards;
+}
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .hero-text .subtitle {
@@ -325,19 +367,18 @@ body.dark .btn-secondary {
 }
 
 .hero-image {
-  position: relative;
+  justify-self: end;
+  width: max-content;
 }
-
 .hero-image img {
-  width: 100%;
-  max-width: 400px;
-  height: 500px;
+  display: block;
+  width: clamp(280px, 32vw, 520px);
+  height: clamp(360px, 38vw, 520px);
   object-fit: cover;
   border-radius: 20px;
   box-shadow: var(--shadow);
   transition: transform 0.3s ease;
 }
-
 .hero-image:hover img {
   transform: scale(1.05);
 }
@@ -404,8 +445,8 @@ body.dark .card {
   width: 100%;
 }
 
-.card-inline{
-  flex: 0 0 100%;   /* kunci lebar slide */
+.card-inline {
+  flex: 0 0 100%; /* kunci lebar slide */
   width: 100%;
   box-sizing: border-box;
   padding: 1rem;
@@ -649,8 +690,8 @@ body.dark .skill-item {
 }
 
 .skill-item > div:last-child {
-  min-width: 0;              
-  overflow-wrap: anywhere;   
+  min-width: 0;
+  overflow-wrap: anywhere;
   word-break: break-word;
 }
 
@@ -658,7 +699,7 @@ body.dark .skill-item {
   width: 40px;
   height: 40px;
   background: var(--gradient);
-  flex: 0 0 40px;           
+  flex: 0 0 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
