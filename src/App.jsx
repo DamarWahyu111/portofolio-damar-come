@@ -225,7 +225,7 @@ function Experience() {
         </div>
       </div>
       <div className="card experience-item">
-        <img src="/public/img/bpjs.jpg" alt="BPJS Ketenagakerjaan" />
+        <img src="/img/bpjs.jpg" alt="BPJS Ketenagakerjaan" />
         <div>
           <h3 style={{ color: 'var(--primary)', marginBottom: '.5rem' }}>BPJS Keternagakerjaan Intership</h3>
           <p style={{ color: 'var(--text-muted-light)', marginBottom: '1rem' }}>Agustus 2025 - November 2025</p>
