@@ -181,7 +181,7 @@ function Hero({ openLB }) {
 
         <p className="subtitle">Frontend Developer &amp; Backend Developer</p>
         <p>
-          Sebagai mahasiswa yang tertarik pada front-end dan back-end, saya senang mengubah ide menjadi produk nyata.
+          Sebagai lulusan dari CEP-CCIT FTUI yang tertarik pada front-end dan back-end, saya senang mengubah ide menjadi produk nyata.
           Saya berfokus pada performa dan aksesibilitas, dipadukan dengan desain yang rapi agar setiap interaksi terasa
           intuitif. Saya memiliki pengalaman dengan HTML, CSS, dan JavaScript, serta dasar yang kuat pada jQuery,
           Node.js/Express, dan MySQL. Pernah terlibat dalam proyek UI/UX dasar dan berkesempatan menjadi MC di acara
@@ -221,6 +221,27 @@ function Experience() {
           <p style={{ color: 'var(--text-muted-light)', marginBottom: '1rem' }}>2024</p>
           <p>
             Berperan sebagai staff divisi event dan MC pada acara Seminar Stock-Summit UI. Mengelola koordinasi acara dan memfasilitasi jalannya seminar dengan audience yang besar.
+          </p>
+        </div>
+      </div>
+      <div className="card experience-item">
+        <img src="/public/img/bpjs.jpg" alt="BPJS Ketenagakerjaan" />
+        <div>
+          <h3 style={{ color: 'var(--primary)', marginBottom: '.5rem' }}>BPJS Keternagakerjaan Intership</h3>
+          <p style={{ color: 'var(--text-muted-light)', marginBottom: '1rem' }}>Agustus 2025 - November 2025</p>
+          <p>
+            •	Mempelajari dan menguasai Vue.js, PHP, dan VMS sebagai teknologi inti untuk proyek. <br/>
+            •	Menggunakan Figma untuk mendesain antarmuka pengguna (UI) situs web internal, termasuk tata letak dan komponen yang akan digunakan oleh tim di kemudian hari.  <br/>
+            •	Bekerja sama dengan tim di Figma untuk mendesain fitur situs web internal, mengikuti pedoman perusahaan dan standar desain.  <br/>
+            •	Mengambil peran sebagai Insinyur Back End, fokus pada logika sisi server dan integrasi dengan frontend.  <br/>
+            •	Membuat desain UI mockup Figma untuk aplikasi internal dengan persyaratan khusus dari perusahaan.  <br/>
+            •	Merancang dan membangun bagian struktur database serta melakukan tugas-tugas engineering backend sesuai peran yang ditugaskan.  <br/>
+            •	Membuat REST APIs menggunakan Node.js (Express.js) dan PHP, termasuk struktur endpoint, validasi input, dan penanganan kesalahan.  <br/>
+            •	Menerapkan integrasi frontend: menghubungkan APIs dengan formulir, tombol, fungsi pencarian, dan validasi berdasarkan 
+            desain Figma.  <br/>
+            •	Mengembangkan komponen backend dan beberapa komponen frontend menggunakan Node.js (Express.js) dan PHP.  <br/>
+            •	Bekerja dalam sesi kolaborasi dan tinjauan rutin dengan tim untuk menyempurnakan, memprioritaskan, dan menyelesaikan fitur internal yang penting.  <br/>
+            •	Menerapkan alur create, read, dan update antara Database ⇄ API ⇄ Frontend untuk aplikasi internal.  <br/>
           </p>
         </div>
       </div>
