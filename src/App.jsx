@@ -194,7 +194,7 @@ function Hero({ openLB }) {
             <i className="fas fa-rocket"></i>
             View My Work
           </a>
-          <a href="/public/Resume-Damar-Wahyu-Putra.pdf" download className="btn btn-secondary">
+          <a href="/Resume-Damar-Wahyu-Putra.pdf" download className="btn btn-secondary">
             <i className="fas fa-download"></i>
             Download CV
           </a>
