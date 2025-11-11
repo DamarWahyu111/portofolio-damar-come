@@ -263,6 +263,7 @@ body.dark .hero {
 
 .no-wrap{
   white-space: nowrap;                
+}
 
 .gradient-text {
   background: var(--gradient);
