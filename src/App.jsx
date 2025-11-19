@@ -244,7 +244,7 @@ const Experience = () => {
         'Bekerja dalam sesi kolaborasi dan tinjauan rutin dengan tim untuk menyempurnakan, memprioritaskan, dan menyelesaikan fitur internal yang penting',
         'Menerapkan alur create, read, dan update antara Database ⇄ API ⇄ Frontend untuk aplikasi internal'
       ]
-    }
+    },
   ];
 
   const showDetail = (index) => {
