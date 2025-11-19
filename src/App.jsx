@@ -59,7 +59,6 @@ export default function App() {
         </section>
 
         <section className="section fade-in" id="experience">
-          <h2 className="section-title">Experience</h2>
           <Experience />
         </section>
 
@@ -99,7 +98,6 @@ function Header({ current }) {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }
 
-  // Smooth scroll + close mobile menu
   const onNavClick = (e, id) => {
     e.preventDefault()
     const target = document.querySelector(id)
@@ -108,7 +106,6 @@ function Header({ current }) {
   }
 
   useEffect(() => {
-    // Close when clicking outside
     const onClick = (e) => {
       const nav = document.getElementById('navMenu')
       const ham = document.getElementById('hamburger')
@@ -165,7 +162,6 @@ function Header({ current }) {
 }
 
 function Hero({ openLB }) {
-  // non-breaking space supaya tidak pernah terpecah
   const typedName = useTypewriter("Damar\u00A0Wahyu\u00A0P", { speed: 85, startDelay: 300 });
 
   return (
@@ -211,43 +207,178 @@ function Hero({ openLB }) {
     </div>
   );
 }
-function Experience() {
+
+
+const Experience = () => {
+  const [selectedExperience, setSelectedExperience] = useState(null);
+
+  const experiences = [
+    {
+      title: 'Staff Event Stock-Summit UI',
+      date: '2024',
+      image: '/img/IMG_3833.jpg',
+      description: 'Berperan sebagai staff divisi event dan MC pada acara Seminar Stock-Summit UI. Mengelola koordinasi acara dan memfasilitasi jalannya seminar dengan audience yang besar, memastikan semua sesi berjalan lancar dan profesional.',
+      responsibilities: [
+        'Mengelola koordinasi teknis dan logistik acara seminar',
+        'Menjadi MC untuk membawakan acara di hadapan ratusan peserta',
+        'Memfasilitasi sesi Q&A dan interaksi dengan pembicara',
+        'Berkoordinasi dengan tim untuk memastikan timeline acara berjalan sesuai rencana',
+        'Membantu registrasi dan handling peserta seminar'
+      ]
+    },
+    {
+      title: 'BPJS Ketenagakerjaan Internship',
+      date: 'Agustus 2025 - November 2025',
+      image: '/img/bpjs.jpg',
+      description: 'Magang sebagai Full-Stack Developer di BPJS Ketenagakerjaan, bertanggung jawab dalam pengembangan aplikasi internal perusahaan. Terlibat dalam seluruh siklus pengembangan dari desain UI/UX hingga implementasi backend dan database.',
+      responsibilities: [
+        'Mempelajari dan menguasai Vue.js, PHP, dan VMS sebagai teknologi inti untuk proyek',
+        'Menggunakan Figma untuk mendesain antarmuka pengguna (UI) situs web internal, termasuk tata letak dan komponen yang akan digunakan oleh tim di kemudian hari',
+        'Bekerja sama dengan tim di Figma untuk mendesain fitur situs web internal, mengikuti pedoman perusahaan dan standar desain',
+        'Mengambil peran sebagai Insinyur Back End, fokus pada logika sisi server dan integrasi dengan frontend',
+        'Membuat desain UI mockup Figma untuk aplikasi internal dengan persyaratan khusus dari perusahaan',
+        'Merancang dan membangun bagian struktur database serta melakukan tugas-tugas engineering backend sesuai peran yang ditugaskan',
+        'Membuat REST APIs menggunakan Node.js (Express.js) dan PHP, termasuk struktur endpoint, validasi input, dan penanganan kesalahan',
+        'Menerapkan integrasi frontend: menghubungkan APIs dengan formulir, tombol, fungsi pencarian, dan validasi berdasarkan desain Figma',
+        'Mengembangkan komponen backend dan beberapa komponen frontend menggunakan Node.js (Express.js) dan PHP',
+        'Bekerja dalam sesi kolaborasi dan tinjauan rutin dengan tim untuk menyempurnakan, memprioritaskan, dan menyelesaikan fitur internal yang penting',
+        'Menerapkan alur create, read, dan update antara Database ⇄ API ⇄ Frontend untuk aplikasi internal'
+      ]
+    }
+  ];
+
+  const showDetail = (index) => {
+    setSelectedExperience(index);
+    setTimeout(() => {
+      scrollToCard();
+    }, 0);
+  };
+
+  const backToList = () => {
+    setSelectedExperience(null);
+    setTimeout(() => {
+      scrollToCard();
+    }, 0);
+  };
+
+  const scrollToCard = () => {
+    const cardWrapper = document.querySelector('.experience-card-wrapper');
+    if (cardWrapper) {
+      cardWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleEscape = (event) => {
+    if (event.key === 'Escape' && selectedExperience !== null) {
+      backToList();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    const items = document.querySelectorAll('.experience-list-item');
+    items.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = 'all 0.6s ease';
+      observer.observe(item);
+    });
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      items.forEach(item => observer.unobserve(item));
+    };
+  }, [selectedExperience]);
+
   return (
-    <div className="experience-grid">
-      <div className="card experience-item">
-        <img src="/img/IMG_3833.jpg" alt="Stock-Summit UI Event" />
-        <div>
-          <h3 style={{ color: 'var(--primary)', marginBottom: '.5rem' }}>Staff Event Stock-Summit UI</h3>
-          <p style={{ color: 'var(--text-muted-light)', marginBottom: '1rem' }}>2024</p>
-          <p>
-            Berperan sebagai staff divisi event dan MC pada acara Seminar Stock-Summit UI. Mengelola koordinasi acara dan memfasilitasi jalannya seminar dengan audience yang besar.
-          </p>
+    <section id="experience" className="section">
+      <h2 className="section-title">Professional Experience</h2>
+      
+      <div className="experience-container">
+        <div className="experience-card-wrapper">
+          
+          {/* LIST VIEW (Default) */}
+          <div 
+            className={`experience-list-view ${selectedExperience !== null ? 'hidden' : ''}`}
+          >
+            <div className="experience-list-header">
+              <h3>My Journey</h3>
+            </div>
+            
+            <div className="experience-list">
+              {experiences.map((exp, index) => (
+                <div 
+                  key={index}
+                  className="experience-list-item"
+                  onClick={() => showDetail(index)}
+                >
+                  <div className="experience-list-item-image">
+                    <img src={exp.image} alt={exp.title} />
+                  </div>
+                  <div className="experience-list-item-content">
+                    <h4>{exp.title}</h4>
+                    <span className="experience-list-item-date">{exp.date}</span>
+                  </div>
+                  <div className="experience-list-item-arrow">→</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DETAIL VIEW */}
+          {experiences.map((exp, index) => (
+            <div 
+              key={`detail-${index}`}
+              className={`experience-detail-view ${selectedExperience === index ? 'active' : ''}`}
+            >
+              <button className="experience-back-button" onClick={backToList}>
+                ← Kembali ke Daftar
+              </button>
+              
+              <div className="experience-detail-content">
+                <div className="experience-detail-image">
+                  <img src={exp.image} alt={exp.title} />
+                </div>
+                
+                <div className="experience-detail-info">
+                  <h3>{exp.title}</h3>
+                  <span className="experience-detail-date">{exp.date}</span>
+                  
+                  <p>{exp.description}</p>
+                  
+                  <h4>Tanggung Jawab & Pencapaian:</h4>
+                  <ul>
+                    {exp.responsibilities.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+
         </div>
       </div>
-      <div className="card experience-item">
-        <img src="/img/bpjs.jpg" alt="BPJS Ketenagakerjaan" />
-        <div>
-          <h3 style={{ color: 'var(--primary)', marginBottom: '.5rem' }}>BPJS Keternagakerjaan Intership</h3>
-          <p style={{ color: 'var(--text-muted-light)', marginBottom: '1rem' }}>Agustus 2025 - November 2025</p>
-          <p>
-            •	Mempelajari dan menguasai Vue.js, PHP, dan VMS sebagai teknologi inti untuk proyek. <br/>
-            •	Menggunakan Figma untuk mendesain antarmuka pengguna (UI) situs web internal, termasuk tata letak dan komponen yang akan digunakan oleh tim di kemudian hari.  <br/>
-            •	Bekerja sama dengan tim di Figma untuk mendesain fitur situs web internal, mengikuti pedoman perusahaan dan standar desain.  <br/>
-            •	Mengambil peran sebagai Insinyur Back End, fokus pada logika sisi server dan integrasi dengan frontend.  <br/>
-            •	Membuat desain UI mockup Figma untuk aplikasi internal dengan persyaratan khusus dari perusahaan.  <br/>
-            •	Merancang dan membangun bagian struktur database serta melakukan tugas-tugas engineering backend sesuai peran yang ditugaskan.  <br/>
-            •	Membuat REST APIs menggunakan Node.js (Express.js) dan PHP, termasuk struktur endpoint, validasi input, dan penanganan kesalahan.  <br/>
-            •	Menerapkan integrasi frontend: menghubungkan APIs dengan formulir, tombol, fungsi pencarian, dan validasi berdasarkan 
-            desain Figma.  <br/>
-            •	Mengembangkan komponen backend dan beberapa komponen frontend menggunakan Node.js (Express.js) dan PHP.  <br/>
-            •	Bekerja dalam sesi kolaborasi dan tinjauan rutin dengan tim untuk menyempurnakan, memprioritaskan, dan menyelesaikan fitur internal yang penting.  <br/>
-            •	Menerapkan alur create, read, dan update antara Database ⇄ API ⇄ Frontend untuk aplikasi internal.  <br/>
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
 function Projects({ openLB }) {
   const slides = useMemo(() => [
