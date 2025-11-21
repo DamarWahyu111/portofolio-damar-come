@@ -232,7 +232,7 @@ const Experience = () => {
       image: '/img/bpjs.jpg',
       description: 'Magang sebagai Full-Stack Developer di BPJS Ketenagakerjaan, bertanggung jawab dalam pengembangan aplikasi internal perusahaan. Terlibat dalam seluruh siklus pengembangan dari desain UI/UX hingga implementasi backend dan database.',
       responsibilities: [
-        'Mempelajari dan menguasai Vue.js, PHP, dan VMS sebagai teknologi inti untuk proyek',
+        'Mengimplementasikan Vue.js, Node.js(Express.js), PHP, dan VMS sebagai tech stack utama untuk mengembangkan solusi pada proyek ini',
         'Menggunakan Figma untuk mendesain antarmuka pengguna (UI) situs web internal, termasuk tata letak dan komponen yang akan digunakan oleh tim di kemudian hari',
         'Bekerja sama dengan tim di Figma untuk mendesain fitur situs web internal, mengikuti pedoman perusahaan dan standar desain',
         'Mengambil peran sebagai Insinyur Back End, fokus pada logika sisi server dan integrasi dengan frontend',
